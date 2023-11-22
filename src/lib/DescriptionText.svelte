@@ -56,12 +56,15 @@
 
         margin: 0;
 
-        text-shadow: 1px 1px 5px var(--shadow-color);
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.8), 0px 0px 2px  rgba(0,0,0,1);
 
-        text-align: justify;
+        text-align: center;
 
         text-overflow: ellipsis;
 
         transition: all 0.3s ease-out;
+
+        pointer-events: none;
+        user-select: none;
     }
 </style>

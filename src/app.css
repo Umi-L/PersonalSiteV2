@@ -11,6 +11,7 @@
     --text-color: #ffffff;
     --text-color-disabled: #a9a8a8;
     --shadow-color: rgba(0,0,0,1);
+    --box-shadow-color: rgba(0,0,0,0.2);
 
     --border-color: var(--background-color);
     --border-size: 100px;

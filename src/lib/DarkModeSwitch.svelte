@@ -55,7 +55,7 @@
 
         transition: 0.3s ease-out;
 
-        box-shadow: 0px 0px 10px var(--shadow-color);
+        box-shadow: 0px 0px 10px var(--box-shadow-color);
     }
 
     .switch:hover{

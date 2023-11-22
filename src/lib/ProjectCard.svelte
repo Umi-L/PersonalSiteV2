@@ -112,7 +112,7 @@
 
         background-color: var(--foreground-color);
 
-        box-shadow: 0 0px 20px var(--shadow-color);
+        box-shadow: 0 0px 20px var(--box-shadow-color);
         border-radius: 20px;
 
         z-index: 10;
@@ -177,7 +177,7 @@
         width: 100%;
         height: 100%;
         border-radius: 15px;
-        box-shadow: 0 0px 10px var(--shadow-color);
+        box-shadow: 0 0px 10px var(--box-shadow-color);
 
         overflow: hidden;
 
