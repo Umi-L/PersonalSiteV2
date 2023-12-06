@@ -65,7 +65,7 @@
 
 
 
-<div class="follower invert" bind:this={follower} class:hidden={hidden || mode == FollowerMode.READ_MORE} style={`width: ${convertRemToPixels(followerSize)}px; height: ${convertRemToPixels(followerSize)}px;`}>
+<div class="follower invert" bind:this={follower} class:hidden={hidden || mode == FollowerMode.READ_MORE || mode == FollowerMode.HIDDEN} style={`width: ${convertRemToPixels(followerSize)}px; height: ${convertRemToPixels(followerSize)}px;`}>
 
 </div>
 

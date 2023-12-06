@@ -30,7 +30,7 @@
         width: 100%;
         height: 100%;
         border-radius: 15px;
-        box-shadow: 0 0px 10px var(--shadow-color);
+        box-shadow: 0 0px 10px var(--box-shadow-color);
 
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(5px);

@@ -12,6 +12,7 @@ export const language: Writable<Language> = writable(Language.EN);
 export enum FollowerMode {
     INVERTED = "inverted",
     READ_MORE = "read-more",
+    HIDDEN = "hidden",
 }
 
 export const followerMode: Writable<FollowerMode> = writable(FollowerMode.INVERTED);

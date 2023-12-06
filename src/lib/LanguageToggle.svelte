@@ -9,7 +9,7 @@
     });
 
     function mouseEnter(){
-        followerMode.set(FollowerMode.READ_MORE);
+        followerMode.set(FollowerMode.HIDDEN);
     }
 
     function mouseLeave(){

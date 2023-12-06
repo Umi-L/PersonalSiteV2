@@ -1,6 +1,9 @@
 <script lang="ts">
   import { FollowerMode, projectDescription, followerMode } from "../sharedData";
+  import { typeText } from "../utils";
   import Follower from "./Follower.svelte";
+
+    let descriptionElement: HTMLParagraphElement;
 
     let currentFollowerMode = FollowerMode.INVERTED;
     followerMode.subscribe((value) => {
@@ -10,14 +13,21 @@
     let currentDescription = "";
     projectDescription.subscribe((value) => {
         currentDescription = value;
+
+        if (descriptionElement != undefined && descriptionElement != null){
+
+            descriptionElement.textContent = currentDescription;
+
+            typeText(descriptionElement, 0, 1000);
+        }
     });
 </script>
 
 
 
 <div class="wrapper">
-    <p class:hidden={currentFollowerMode != FollowerMode.READ_MORE}>
-        {currentDescription}
+    <p class:hidden={currentFollowerMode != FollowerMode.READ_MORE} bind:this={descriptionElement}>
+
     </p>
 </div>
 
@@ -40,6 +50,9 @@
         text-align: center;
 
         z-index: 1000;
+
+        pointer-events: none;
+        user-select: none;
     }
 
     .hidden{

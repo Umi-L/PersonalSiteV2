@@ -1,4 +1,6 @@
-export function typeText(element: HTMLHeadingElement, delay: number, duration: number): Promise<void> {
+let intervals = new Map<HTMLElement, number>();
+
+export function typeText(element: HTMLElement, delay: number, duration: number): Promise<void> {
     return new Promise<void>((resolve, reject) => {
 
         // get the text
@@ -12,8 +14,16 @@ export function typeText(element: HTMLHeadingElement, delay: number, duration: n
         // clear the text
         element.innerText = "";
 
+        // clear the interval if it exists
+        if(intervals.has(element)){
+            console.log("clearing interval");
+            clearInterval(intervals.get(element));
+            // remove the interval
+            intervals.delete(element);
+        }
+
         // wait for the delay
-        setTimeout(() => {                
+        let interval = setTimeout(() => {                
             const glitchCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "[", "]", "{", "}", "|", "\\", ";", ":", "'", "\"", ",", "<", ".", ">", "/", "?", "~", "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
             // start typing
@@ -38,6 +48,9 @@ export function typeText(element: HTMLHeadingElement, delay: number, duration: n
             }, duration / text.length);
 
         }, delay);
+
+        // store the interval
+        intervals.set(element, interval);
 
     });
 

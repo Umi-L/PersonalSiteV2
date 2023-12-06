@@ -186,8 +186,6 @@
         z-index: 1000;
 
         padding: 0 2rem;
-
-        pointer-events: none;
     }
 
 </style>
