@@ -19,4 +19,4 @@ export const followerMode: Writable<FollowerMode> = writable(FollowerMode.INVERT
 
 export const darkMode: Writable<boolean> = writable(true);
 
-export const projectDescription: Writable<string> = writable("");
+export const aboutVisible: Writable<boolean> = writable(false);

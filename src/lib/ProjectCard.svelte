@@ -1,10 +1,11 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { FollowerMode, followerMode, projectDescription } from "../sharedData";
+    import { FollowerMode, followerMode } from "../sharedData";
 
     export let name: string;
     export let image: string;
     export let description: string;
+    export let href: string;
 
     export let gridRow: string;
     export let gridColumn: string;
@@ -14,13 +15,21 @@
     function mouseEnter(){
         followerMode.set(FollowerMode.READ_MORE);
         hoveringBlock = true;
-
-        projectDescription.set(description);
     }
 
     function mouseLeave(){
         followerMode.set(FollowerMode.INVERTED);
         hoveringBlock = false;
+    }
+
+    function click(){
+        window.open(href, "_blank");
+    }
+
+    function keypress(e: KeyboardEvent){
+        if(e.key == "Enter"){
+            window.open(href, "_blank");
+        }
     }
 </script>
 
@@ -28,7 +37,7 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="block-wrapper" style={`grid-row: ${gridRow}; grid-column: ${gridColumn};`} class:hovering-block={hoveringBlock}>
-    <div class="block" on:mouseenter={mouseEnter} on:mouseleave={mouseLeave}>
+    <div class="block" on:mouseenter={mouseEnter} on:mouseleave={mouseLeave} on:click={click}  role="button" on:keypress={keypress} tabindex={1}>
         <img src={image} alt={name} class="image" />
 
         <h1 class="label">{name}</h1>

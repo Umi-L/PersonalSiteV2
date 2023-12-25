@@ -1,7 +1,21 @@
+<script lang="ts">
+    import Icon from '@iconify/svelte';
+  import IconButton from './IconButton.svelte';
+</script>
+
 <div class="bar">
     <div class="gradient-wrapper">
         <div class="gradient"></div>
+
+        <div class="icons">
+            <IconButton icon="mdi:github" href="https://github.com/Umi-L"/>
+            <IconButton icon="mdi:twitter" href="https://twitter.com/Julian_Ogradyy"/>
+            <IconButton icon="cib:itch-io" href="https://um1.itch.io/"/>
+            <IconButton icon="mdi:email" href="mailto:julianogrady07@gmail.com"/>
+        </div>
     </div>
+
+    
 </div>
 
 
@@ -24,6 +38,17 @@
         bottom: -1rem;
 
         z-index: 10;
+    }
+
+    .icons{
+        width: 100%;
+        height: 80%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 2rem;
     }
 
     .gradient-wrapper{

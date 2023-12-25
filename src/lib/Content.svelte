@@ -3,6 +3,7 @@
     import { typeText } from "../utils";
     import Block from "./Block.svelte";
     import ProjectCard from "./ProjectCard.svelte";
+    import NameElement from "./NameElement.svelte";
     import duskImage from "../assets/dusk-example.png";
     import itSpreadsImage from "../assets/it-spreads.jpg";
     import pumpkinSpiceImage from "../assets/pumpkin-spice.png";
@@ -10,6 +11,7 @@
     import sweatErShopImage from "../assets/SweaterShop.png";
     import sparkForgeImage from "../assets/SparkForge.png";
     import whisperingEchosImage from "../assets/WhisperingEchos.png";
+    import adventAssemblyLineImage from "../assets/AdventAssemblyLine.png";
 
   import BottomBar from "./BottomBar.svelte";
 
@@ -31,19 +33,20 @@
 
 <div class="wrapper">
     <h1 class="title" bind:this={titleText}>
-        Hi, I'm Julian.
+        Hi, I'm&nbsp;<NameElement/>.
     </h1>
 
     <div class="projects">
-        <ProjectCard name="Whispering Echos" image={whisperingEchosImage} gridRow="1/3" gridColumn="2/4" description="A game I wrote in my free time. It's written in a custom engine built on the Raylib game framework."/>
+        <ProjectCard name="Whispering Echos" image={whisperingEchosImage} gridRow="1/3" gridColumn="2/4" description="A game I wrote in my free time. It's written in a custom engine built on the Raylib game framework." href={""}/>
+        <ProjectCard name="Advent Assembly Line" image={adventAssemblyLineImage} gridRow="5/7" gridColumn="1/2" description="A game I made for the University of Waterloo Games Institute game jam where it won people's choice award." href={"https://um1.itch.io/advent-assembly"}/>
 
-        <ProjectCard name="SparkForge" image={sparkForgeImage} gridRow="4/5" gridColumn="2/5" description="An open source game engine I made that is intended to teach younger children programming using flowcharts and visual programming."/>
+        <ProjectCard name="SparkForge" image={sparkForgeImage} gridRow="4/5" gridColumn="1/3" description="An open source game engine I made that is intended to teach younger children programming using flowcharts and visual programming." href={"https://github.com/Umi-L/SparkForge"}/>
         
-        <ProjectCard name="It Spreads" image={itSpreadsImage} gridRow="1/3" gridColumn="1/2" description="A short platformer puzzle game I made for the University of Waterloo Games Institute game jam where it jointly won people's choice award."/>
-        <ProjectCard name="Pumpkin Spice" image={pumpkinSpiceImage} gridRow="4/6" gridColumn="1/2"/>
-        <ProjectCard name="Hue NX" image={hueNXImage} gridRow="3/4" gridColumn="3/4"/>
-        <ProjectCard name="Sweat-er Shop" image={sweatErShopImage} gridRow="3/4" gridColumn="1/3"/>
-        <ProjectCard name="DuSK Example Project" image={duskImage} gridRow="5/6" gridColumn="2/4"/>
+        <ProjectCard name="It Spreads" image={itSpreadsImage} gridRow="1/3" gridColumn="1/2" description="A short platformer puzzle game I made for the University of Waterloo Games Institute game jam where it jointly won people's choice award." href={"https://um1.itch.io/it-spreads"}/>
+        <ProjectCard name="Pumpkin Spice" image={pumpkinSpiceImage} gridRow="3/5" gridColumn="3/4" href={"https://um1.itch.io/pumpkin-spice-post-jam"}/>
+        <ProjectCard name="Hue NX" image={hueNXImage} gridRow="3/4" gridColumn="1/3" href={"https://github.com/Umi-L/hue-nx"}/>
+        <ProjectCard name="Sweat-er Shop" image={sweatErShopImage} gridRow="5/6" gridColumn="2/5" href={"https://um1.itch.io/sweat-er-shop"}/>
+        <ProjectCard name="DuSK Example Project" image={duskImage} gridRow="6/7" gridColumn="2/4" href={"https://github.com/Umi-L/dusk-example-project"}/>
     </div>
 
     <div class="spacer"/>
@@ -84,9 +87,9 @@
         grid-column: 1 / 4;
         grid-row: 2 / 4;
 
-        height: 200dvh;
+        height: 250dvh;
 
-        padding: 10rem;
+        padding: 10dvw;
 
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;

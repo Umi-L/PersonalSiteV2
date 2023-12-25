@@ -9,6 +9,7 @@
     --shadow-color: rgba(0,0,0,0.1);
     --dot-color: #6e6e6e;
     --text-color: #ffffff;
+    --text-color-hover: #e1e1e1;
     --text-color-disabled: #a9a8a8;
     --shadow-color: rgba(0,0,0,1);
     --box-shadow-color: rgba(0,0,0,0.2);
@@ -24,6 +25,11 @@ body, html, #app{
     margin: 0;
     padding: 0;
 
+}
+
+.icon{
+    color: var(--text-color);
+    font-size: 2rem;
 }
 
 body {

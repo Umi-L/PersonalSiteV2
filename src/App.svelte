@@ -8,7 +8,7 @@
     import LanguageToggle from "./lib/LanguageToggle.svelte";
     import { FollowerMode, Language, followerMode, language } from "./sharedData";
     import ColorSwitch from "./lib/DarkModeSwitch.svelte";
-  import DescriptionText from "./lib/DescriptionText.svelte";
+  import AboutPage from "./lib/AboutPage.svelte";
 
     let contentTranslation = {
         x: 0,
@@ -124,14 +124,13 @@
     <Border/>
     <ScrollBar percentage={percentageScrolled}/>
     <Follower/>
+    <AboutPage/>
 
-
-    <DescriptionText/>
     <div class="topbar">
-        <div class:disappear-on-scroll={scrollingDown || (currentFollowerMode == FollowerMode.READ_MORE)} class="can-disappear">
+        <!-- <div class:disappear-on-scroll={scrollingDown || (currentFollowerMode == FollowerMode.READ_MORE)} class="can-disappear">
             <ColorSwitch/>
             <LanguageToggle/>
-        </div>
+        </div> -->
         
         <ScrollPercent percentage={percentageScrolled}/>
     </div>

@@ -1,59 +1,68 @@
 let intervals = new Map<HTMLElement, number>();
 
-export function typeText(element: HTMLElement, delay: number, duration: number): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
+export function typeText(element: HTMLElement, delay: number, duration: number): void {
 
-        // get the text
-        let text = element.textContent as string;
+    // get the text
+    let text = element.textContent as string;
 
-        // if there is no text, return
-        if(!text){
-            resolve();
-        }
+    // if there is no text, return
+    if(!text){
+        return;
+    }
 
-        // clear the text
-        element.innerText = "";
+    let clone = element.cloneNode(true) as HTMLElement;
 
-        // clear the interval if it exists
-        if(intervals.has(element)){
-            console.log("clearing interval");
-            clearInterval(intervals.get(element));
-            // remove the interval
-            intervals.delete(element);
-        }
+    // clear clone innertext
+    clone.innerText = "";
 
-        // wait for the delay
-        let interval = setTimeout(() => {                
-            const glitchCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "[", "]", "{", "}", "|", "\\", ";", ":", "'", "\"", ",", "<", ".", ">", "/", "?", "~", "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    // add the clone to the element's parent
+    element.parentElement?.appendChild(clone);
 
-            // start typing
-            let i = 0;
+    // hide element
+    element.style.visibility = "hidden";
 
-            let interval = setInterval(() => {
-                // add the next character
-                element.innerHTML = text.substring(0, i).replaceAll(" ", "&nbsp;") + "<i><u><b>" + glitchCharacters[Math.floor(Math.random() * glitchCharacters.length)] + "</b></u></i>" + "&nbsp;".repeat(text.substring(i).length-1);
+    // clear the interval if it exists
+    if(intervals.has(element)){
+        console.log("clearing interval");
+        console.log(intervals.get(element));
+        clearInterval(intervals.get(element));
+        // remove the interval
+        intervals.delete(element);
+    }
 
-                // increment i
-                i++;
+    // wait for the delay
+    let interval = setTimeout(() => {                
+        const glitchCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "[", "]", "{", "}", "|", "\\", ";", ":", "'", "\"", ",", "<", ".", ">", "/", "?", "~", "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
-                // if i is greater than the length of the text, stop
-                if(i >= text.length){
-                    clearInterval(interval);
-                    element.textContent = text;
+        // start typing
+        let i = 0;
 
-                    // resolve the promise
-                    resolve();
-                }
+        let interval = setInterval(() => {
+            // add the next character
+            clone.innerHTML = text.substring(0, i).replaceAll(" ", "&nbsp;") + "<i><u><b>" + glitchCharacters[Math.floor(Math.random() * glitchCharacters.length)] + "</b></u></i>" + "&nbsp;".repeat(text.substring(i).length-1);
 
-            }, duration / text.length);
+            // increment i
+            i++;
 
-        }, delay);
+            // if i is greater than the length of the text, stop
+            if(i >= text.length){
+                clearInterval(interval);
 
-        // store the interval
-        intervals.set(element, interval);
+                // remove clone
+                clone.remove();
 
-    });
+                // show element
+                element.style.visibility = "visible";
 
+                return;
+            }
+
+        }, duration / text.length);
+
+    }, delay);
+
+    // store the interval
+    intervals.set(element, interval);
 }
 
 export function convertRemToPixels(rem: number) {    
