@@ -9,7 +9,7 @@
     class:high={level == 4}
     class:good={level == 3}
     class:medium={level == 2}
-    class:acquainted={level == 1}
+    class:low={level == 1}
   >
     <TextButton>
       <slot />
@@ -32,8 +32,8 @@
   .medium {
     color: var(--medium-color);
   }
-  .acquainted {
-    color: var(--aquanted-color);
+  .low {
+    color: var(--low-color);
   }
 
   .wrapper {

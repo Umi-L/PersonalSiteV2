@@ -5,9 +5,11 @@
   import ProgrammingLanguage from "./ProgrammingLanguage.svelte";
 
   let visible = false;
+  let hasBeenVisible = false;
 
   aboutVisible.subscribe((value) => {
     visible = value;
+    if (visible) hasBeenVisible = true;
 
     console.log("visible: " + visible);
   });
@@ -17,7 +19,7 @@
   }
 </script>
 
-<div class="popover" class:visible class:hidden={!visible}>
+<div class="popover" class:visible class:hidden={!visible && hasBeenVisible}>
   <div class="body">
     <div class="bar">
       <IconButton icon="ph:x" showUnderline={false} callback={close} />
@@ -25,6 +27,9 @@
     <div class="sub-wrapper">
       <h1 class="about-label">About Me</h1>
       <p class="about-aside">
+        Hey there!
+        <br />
+        <br />
         I'm a student programmer based in Canada. I have experience with
         <ProgrammingLanguage level={4}>C#</ProgrammingLanguage>,
         <ProgrammingLanguage level={4}>Java</ProgrammingLanguage>,
@@ -39,8 +44,19 @@
         <ProgrammingLanguage level={2}>Go</ProgrammingLanguage>.
         <br />
         <br />
+        (Proficiency: <ProgrammingLanguage level={4}
+          >Very High</ProgrammingLanguage
+        >,
+        <ProgrammingLanguage level={3}>High</ProgrammingLanguage>,
+        <ProgrammingLanguage level={2}>Moderate</ProgrammingLanguage>,
+        <ProgrammingLanguage level={1}>Low</ProgrammingLanguage>)
+        <br />
+        <br />
         As a hobby I work on game development projects using Unity, Godot, and most
         recently my own engine.
+        <br />
+        <br />
+        Want to chat? You can find me at
       </p>
     </div>
   </div>
@@ -58,6 +74,7 @@
     animation: popover-disappear 0.5s ease-out forwards;
     pointer-events: none !important;
     user-select: none !important;
+    visibility: visible !important;
   }
 
   .about-aside {
@@ -71,6 +88,8 @@
   }
 
   .popover {
+    visibility: hidden;
+
     position: fixed;
     left: 0;
     bottom: 0dvw;
@@ -96,6 +115,7 @@
     border: 1px solid var(--foreground-color);
 
     box-shadow: 0 0 10px 0 var(--box-shadow-color);
+    overflow-y: auto;
   }
 
   .sub-wrapper {
