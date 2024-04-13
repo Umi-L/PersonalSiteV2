@@ -26,6 +26,9 @@
   function mouseEnter() {
     followerMode.set(FollowerMode.READ_MORE);
 
+
+    if (!showUnderline) return;
+
     // apply animation
     underline.animate([{ width: "0%" }, { width: "100%" }], {
       duration: 300,
@@ -35,6 +38,8 @@
 
   function mouseLeave() {
     followerMode.set(FollowerMode.INVERTED);
+
+    if (!showUnderline) return;
 
     // apply animation
     underline.animate([{ width: "100%" }, { width: "0%" }], {
@@ -81,6 +86,8 @@
     align-items: center;
 
     transition: 0.3s ease-out;
+
+    aspect-ratio: 1/1;
   }
 
   .wrapper:hover {

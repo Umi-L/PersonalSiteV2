@@ -1,100 +1,105 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { convertRemToPixels } from "../utils";
-  import { FollowerMode, followerMode } from "../sharedData";
+    import {onMount} from "svelte";
+    import {convertRemToPixels} from "../utils";
+    import {FollowerMode, followerMode} from "../sharedData";
 
-  let mode: FollowerMode = FollowerMode.INVERTED;
-  followerMode.subscribe((value) => {
-    mode = value;
-  });
-
-  let follower: HTMLDivElement;
-
-  let followerSize = 4;
-  let hidden = true;
-
-  onMount(async () => {
-    window.addEventListener("mousemove", (e) => {
-      let sizePx = convertRemToPixels(followerSize);
-
-      let finalPosition = {
-        x: e.clientX - sizePx / 2,
-        y: e.clientY - sizePx / 2,
-      };
-
-      const keyframes = {
-        transform: `translate(${finalPosition.x}px, ${finalPosition.y}px)`,
-      };
-
-      follower.animate(keyframes, {
-        duration: 500,
-        fill: "forwards",
-      });
+    let mode: FollowerMode = FollowerMode.INVERTED;
+    followerMode.subscribe((value) => {
+        console.log(value);
+        mode = value;
     });
 
-    // on mouse enter window
-    document.onmouseleave = () => {
-      hidden = true;
-    };
+    let follower: HTMLDivElement;
 
-    // on mouse leave window
-    document.onmouseenter = (e) => {
-      hidden = false;
+    let followerSize = 4;
+    let hidden = true;
 
-      let sizePx = convertRemToPixels(followerSize);
+    onMount(async () => {
+        window.addEventListener("mousemove", (e) => {
 
-      let finalPosition = {
-        x: e.clientX - sizePx / 2,
-        y: e.clientY - sizePx / 2,
-      };
+            let sizePx = convertRemToPixels(followerSize);
 
-      const keyframes = {
-        transform: `translate(${finalPosition.x}px, ${finalPosition.y}px)`,
-      };
+            let finalPosition = {
+                x: e.clientX - sizePx / 2,
+                y: e.clientY - sizePx / 2,
+            };
 
-      follower.animate(keyframes, {
-        duration: 0,
-        fill: "forwards",
-      });
-    };
-  });
+            const keyframes = {
+                transform: `translate(${finalPosition.x}px, ${finalPosition.y}px)`,
+            };
+
+            follower.animate(keyframes, {
+                duration: 500,
+                fill: "forwards",
+            });
+        });
+
+        document.documentElement.addEventListener("mouseleave", () => {
+            hidden = true;
+        });
+
+        document.documentElement.addEventListener("mouseenter", (e) => {
+            hidden = false;
+
+            let sizePx = convertRemToPixels(followerSize);
+
+            let finalPosition = {
+                x: e.clientX - sizePx / 2,
+                y: e.clientY - sizePx / 2,
+            };
+
+            const keyframes = {
+                transform: `translate(${finalPosition.x}px, ${finalPosition.y}px)`,
+            };
+
+            follower.animate(keyframes, {
+                duration: 0,
+                fill: "forwards",
+            });
+        });
+
+        // on touch
+        window.addEventListener("touchmove", (e) => {
+            hidden = true;
+        });
+    });
 </script>
 
 <div
-  class="follower invert"
-  bind:this={follower}
-  class:hidden={hidden ||
+        class="follower invert"
+        bind:this={follower}
+        class:hidden={hidden ||
     mode == FollowerMode.READ_MORE ||
     mode == FollowerMode.HIDDEN}
-  style={`width: ${convertRemToPixels(
-    followerSize,
-  )}px; height: ${convertRemToPixels(followerSize)}px;`}
 ></div>
 
 <style>
-  .follower {
-    position: fixed;
-    top: 0;
-    left: 0;
+    .follower {
+        position: fixed;
+        top: 0;
+        left: 0;
 
-    z-index: 9999;
+        z-index: 9999;
 
-    pointer-events: none;
-  }
+        width: 4rem;
+        height: 4rem;
 
-  .invert {
-    background-color: var(--text-color);
-    border-radius: 50%;
+        pointer-events: none;
+    }
 
-    /* filter: invert(1); */
-    mix-blend-mode: difference;
+    .invert {
+        background-color: var(--text-color);
+        border-radius: 50%;
 
-    transition: 0.2s ease-in-out;
-  }
+        /* filter: invert(1); */
+        mix-blend-mode: difference;
 
-  .hidden {
-    opacity: 0;
+        transition: 0.2s ease-in-out;
+    }
 
-    transition: opacity 0.2s ease-in-out;
-  }
+    .hidden {
+        opacity: 0;
+
+        transition: opacity 0.2s ease-in-out;
+    }
 </style>

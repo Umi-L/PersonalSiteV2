@@ -19,7 +19,7 @@
 
 <style>
   .number {
-    font-size: 1.5rem;
+    font-size: 1.5em;
 
     padding: 0;
     margin: 0;

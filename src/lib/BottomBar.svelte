@@ -25,7 +25,7 @@
 
     width: calc(100% + 4rem);
 
-    height: 7rem;
+    height: 13rem;
 
     background: var(--background-color);
 

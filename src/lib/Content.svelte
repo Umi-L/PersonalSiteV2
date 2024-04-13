@@ -12,6 +12,7 @@
   import sparkForgeImage from "../assets/SparkForge.png";
   import whisperingEchosImage from "../assets/WhisperingEchos.png";
   import adventAssemblyLineImage from "../assets/AdventAssemblyLine.png";
+  import actualCalcImage from "../assets/actual-calc.png";
 
   import BottomBar from "./BottomBar.svelte";
 
@@ -30,8 +31,9 @@
 </script>
 
 <div class="wrapper">
-  <h1 class="title" bind:this={titleText}>
-    Hi, I'm&nbsp;<NameElement />.
+  <h1 class="title-wrapper" bind:this={titleText}>
+    <h1 class="nowrap">Hi, I'm&nbsp;</h1>
+    <NameElement />.
   </h1>
 
   <div class="projects">
@@ -40,15 +42,13 @@
       image={whisperingEchosImage}
       gridRow="1/3"
       gridColumn="2/4"
-      description="A game I wrote in my free time. It's written in a custom engine built on the Raylib game framework."
       href={""}
     />
     <ProjectCard
       name="Advent Assembly Line"
       image={adventAssemblyLineImage}
-      gridRow="5/7"
+      gridRow="5/6"
       gridColumn="1/2"
-      description="A game I made for the University of Waterloo Games Institute game jam where it won people's choice award."
       href={"https://um1.itch.io/advent-assembly"}
     />
 
@@ -57,7 +57,6 @@
       image={sparkForgeImage}
       gridRow="4/5"
       gridColumn="1/3"
-      description="An open source game engine I made that is intended to teach younger children programming using flowcharts and visual programming."
       href={"https://github.com/Umi-L/SparkForge"}
     />
 
@@ -66,7 +65,6 @@
       image={itSpreadsImage}
       gridRow="1/3"
       gridColumn="1/2"
-      description="A short platformer puzzle game I made for the University of Waterloo Games Institute game jam where it jointly won people's choice award."
       href={"https://um1.itch.io/it-spreads"}
     />
     <ProjectCard
@@ -86,16 +84,24 @@
     <ProjectCard
       name="Sweat-er Shop"
       image={sweatErShopImage}
-      gridRow="5/6"
-      gridColumn="2/5"
+      gridRow="6/7"
+      gridColumn="3/4"
       href={"https://um1.itch.io/sweat-er-shop"}
     />
     <ProjectCard
       name="DuSK Example Project"
       image={duskImage}
-      gridRow="6/7"
-      gridColumn="2/4"
+      gridRow="5/6"
+      gridColumn="2/5"
       href={"https://github.com/Umi-L/dusk-example-project"}
+    />
+    <ProjectCard
+      name="Actual Calc"
+      image={actualCalcImage}
+      gridRow="6/7"
+      gridColumn="1/3"
+
+      href={"https://umi-l.github.io/ActualCalc/"}
     />
   </div>
 
@@ -107,6 +113,10 @@
 <style>
   .spacer {
     height: 10rem;
+  }
+
+  .nowrap {
+    white-space: nowrap;
   }
 
   p {
@@ -130,17 +140,31 @@
     grid-template-rows: 70dvh 30dvh;
   }
 
-  .projects {
-    grid-column: 1 / 4;
-    grid-row: 2 / 4;
+  @media screen and (orientation: landscape) {
+      .projects{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 
+        padding: 10dvw;
+      }
+  }
+
+  @media screen and (orientation: portrait) {
+      .projects{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        padding: 5dvw;
+      }
+  }
+
+  .projects {
     height: 250dvh;
 
-    padding: 10dvw;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-column: 1 / 4;
+    grid-row: 2 / 4;
   }
 
   .scroll-down {
@@ -156,7 +180,7 @@
     margin: 0;
   }
 
-  .title {
+  .title-wrapper {
     grid-column: 1 / 4;
     grid-row: 1 / 2;
 
@@ -167,11 +191,15 @@
 
     padding: 0;
     margin: 0;
+
+    flex-wrap: wrap;
+    align-content: center;
   }
 
   h1 {
     font-size: 7rem;
     font-weight: 700;
     color: var(--text-color);
+    margin: 0px;
   }
 </style>

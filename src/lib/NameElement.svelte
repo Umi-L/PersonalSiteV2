@@ -35,7 +35,6 @@
 
 <style>
   .name {
-    font-weight: 700;
     color: var(--text-color);
 
     padding: 0;
@@ -46,6 +45,8 @@
 
     pointer-events: all;
     user-select: none;
+
+    font-weight: 700;
   }
 
   .name:hover {
@@ -90,4 +91,3 @@
     }
   }
 </style>
-

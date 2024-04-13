@@ -3,13 +3,12 @@
   import Block from "./Block.svelte";
   import IconButton from "./IconButton.svelte";
   import ProgrammingLanguage from "./ProgrammingLanguage.svelte";
+  import TextButton from "./TextButton.svelte";
 
   let visible = false;
-  let hasBeenVisible = false;
 
   aboutVisible.subscribe((value) => {
     visible = value;
-    if (visible) hasBeenVisible = true;
 
     console.log("visible: " + visible);
   });
@@ -19,62 +18,67 @@
   }
 </script>
 
-<div class="popover" class:visible class:hidden={!visible && hasBeenVisible}>
-  <div class="body">
-    <div class="bar">
-      <IconButton icon="ph:x" showUnderline={false} callback={close} />
-    </div>
-    <div class="sub-wrapper">
-      <h1 class="about-label">About Me</h1>
-      <p class="about-aside">
-        Hey there!
-        <br />
-        <br />
-        I'm a student programmer based in Canada. I have experience with
-        <ProgrammingLanguage level={4}>C#</ProgrammingLanguage>,
-        <ProgrammingLanguage level={4}>Java</ProgrammingLanguage>,
-        <ProgrammingLanguage level={4}>TypeScript</ProgrammingLanguage>,
-        <ProgrammingLanguage level={3}>GLSL</ProgrammingLanguage>
-        <ProgrammingLanguage level={3}>JavaScript</ProgrammingLanguage>,
-        <ProgrammingLanguage level={3}>Svelte</ProgrammingLanguage>,
-        <ProgrammingLanguage level={3}>Python</ProgrammingLanguage>,
-        <ProgrammingLanguage level={3}>Kotlin</ProgrammingLanguage>,
-        <ProgrammingLanguage level={3}>Lua</ProgrammingLanguage>,
-        <ProgrammingLanguage level={2}>C/C++</ProgrammingLanguage>,
-        <ProgrammingLanguage level={2}>Go</ProgrammingLanguage>.
-        <br />
-        <br />
-        (Proficiency: <ProgrammingLanguage level={4}
-          >Very High</ProgrammingLanguage
-        >,
-        <ProgrammingLanguage level={3}>High</ProgrammingLanguage>,
-        <ProgrammingLanguage level={2}>Moderate</ProgrammingLanguage>,
-        <ProgrammingLanguage level={1}>Low</ProgrammingLanguage>)
-        <br />
-        <br />
-        As a hobby I work on game development projects using Unity, Godot, and most
-        recently my own engine.
-        <br />
-        <br />
-        Want to chat? You can find me at
-      </p>
-    </div>
+<div class="body">
+  <div class="bar">
+  </div>
+  <div class="sub-wrapper">
+    <h1 class="about-label">About Me</h1>
+    <p class="about-aside">
+      Hey there!
+      <br />
+      <br />
+      I'm a student programmer based in Canada. I have experience with
+      <ProgrammingLanguage level={4}>C#</ProgrammingLanguage>,
+      <ProgrammingLanguage level={4}>Java</ProgrammingLanguage>,
+      <ProgrammingLanguage level={4}>TypeScript</ProgrammingLanguage>,
+      <ProgrammingLanguage level={3}>GLSL</ProgrammingLanguage>
+      <ProgrammingLanguage level={3}>JavaScript</ProgrammingLanguage>,
+      <ProgrammingLanguage level={3}>Svelte</ProgrammingLanguage>,
+      <ProgrammingLanguage level={3}>Python</ProgrammingLanguage>,
+      <ProgrammingLanguage level={3}>Kotlin</ProgrammingLanguage>,
+      <ProgrammingLanguage level={3}>Lua</ProgrammingLanguage>,
+      <ProgrammingLanguage level={2}>C/C++</ProgrammingLanguage>,
+      <ProgrammingLanguage level={2}>Go</ProgrammingLanguage>.
+      <br />
+      <br />
+      (Proficiency: <ProgrammingLanguage level={4}
+        >Very High</ProgrammingLanguage
+      >,
+      <ProgrammingLanguage level={3}>High</ProgrammingLanguage>,
+      <ProgrammingLanguage level={2}>Moderate</ProgrammingLanguage>,
+      <ProgrammingLanguage level={1}>Low</ProgrammingLanguage>)
+      <br />
+      <br />
+      As a hobby I work on game development projects using Unity, Godot, and most
+      recently my own engine.
+      <br />
+      <br />
+      Want to chat? You can find me at
+    </p>
+  </div>
+
+  <div class="sub-wrapper">
+    <TextButton onClick={()=>{aboutVisible.set(false)}}>
+      <span class="text">
+        Head Back?
+      </span>
+    </TextButton>
   </div>
 </div>
 
 <style>
-  .visible {
-    animation: popover-appear 1s ease-out forwards;
-    pointer-events: all !important;
-    user-select: all !important;
-    visibility: visible !important;
+  .text{
+    font-size: 5rem;
+    color: var(--text-color);
+    user-select: none;
+    font-weight: bold;
   }
 
-  .hidden {
-    animation: popover-disappear 0.5s ease-out forwards;
-    pointer-events: none !important;
-    user-select: none !important;
-    visibility: visible !important;
+  .sub-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 
   .about-aside {
@@ -85,26 +89,6 @@
     margin-right: 1rem;
     color: var(--text-color);
     user-select: none;
-  }
-
-  .popover {
-    visibility: hidden;
-
-    position: fixed;
-    left: 0;
-    bottom: 0dvw;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    user-select: none;
-    pointer-events: none;
-
-    width: 100dvw;
-    /* height: 100dvh; */
-
-    z-index: 9000;
   }
 
   .body {
@@ -126,7 +110,7 @@
 
   .bar {
     width: 100%;
-    height: 2rem;
+    height: 4rem;
 
     display: flex;
     justify-content: end;

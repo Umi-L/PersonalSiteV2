@@ -3,7 +3,7 @@
   import { FollowerMode, followerMode } from "../sharedData";
 
   export let enabled = true;
-  export let onClick: () => void;
+  export let onClick: (() => void) | undefined = undefined;
 
   let text: HTMLDivElement;
 
@@ -18,7 +18,9 @@
 
   function onKeyPress(e: KeyboardEvent) {
     if (e.key == "Enter") {
-      onClick();
+
+      if (onClick)
+        onClick();
     }
   }
 
@@ -68,7 +70,7 @@
     width: 0%;
     height: 0.3rem;
 
-    background: var(--text-color);
+    background-color: var(--text-color) !important;
 
     transition: 0.1s ease-out;
   }
