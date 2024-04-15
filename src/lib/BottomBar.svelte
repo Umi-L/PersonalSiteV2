@@ -9,10 +9,6 @@
 
     <div class="icons">
       <IconButton icon="mdi:github" href="https://github.com/Umi-L" />
-      <IconButton
-        icon="mdi:twitter"
-        href="https://twitter.com/Julian_Ogradyy"
-      />
       <IconButton icon="cib:itch-io" href="https://um1.itch.io/" />
       <IconButton icon="mdi:email" href="mailto:julianogrady07@gmail.com" />
     </div>
