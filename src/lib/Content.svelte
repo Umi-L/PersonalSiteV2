@@ -13,6 +13,7 @@
   import whisperingEchosImage from "../assets/WhisperingEchos.png";
   import adventAssemblyLineImage from "../assets/AdventAssemblyLine.png";
   import actualCalcImage from "../assets/actual-calc.png";
+  import blindspotImage from "../assets/blindspot.png";
 
   import BottomBar from "./BottomBar.svelte";
 
@@ -33,13 +34,22 @@
   </h1>
 
   <div class="projects">
+<!--    <ProjectCard-->
+<!--      name="Wisp Engine"-->
+<!--      image={whisperingEchosImage}-->
+<!--      gridRow="1/3"-->
+<!--      gridColumn="2/4"-->
+<!--      href={""}-->
+<!--    />-->
+
     <ProjectCard
-      name="Wisp Engine"
-      image={whisperingEchosImage}
+      name="Blindspot"
+      image={blindspotImage}
       gridRow="1/3"
       gridColumn="2/4"
-      href={""}
+      href={"https://um1.itch.io/blindspot"}
     />
+
     <ProjectCard
       name="Advent Assembly Line"
       image={adventAssemblyLineImage}
